@@ -1,0 +1,135 @@
+﻿<Window x:Class="Invest_Management.View.AddChangeProject"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
+        mc:Ignorable="d"
+        Name="addChangeWindow"
+        Title="{Binding WindowTitle}" Height="650" Width="460" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="Margin" Value="20 0 20 0"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="20 0 20 0"/>
+            <Setter Property="Height" Value="22"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="20 0 20 0"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="0 10 0 10"/>
+            <Setter Property="Width" Value="130"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="FontSize" Value="11"/>
+        </Style>
+        <Style TargetType="DatePickerTextBox">
+            <Setter Property="VerticalAlignment" Value="Center" />            
+            <Setter Property="Padding" Value="7 0 0 0" />
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="28"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>            
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Content="Код проекта:"/>
+        <TextBox Name="tbCode" Grid.Row="1" Width="112" Padding="5,0,0,0" IsEnabled="False"
+                 Text="{Binding Code, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Row="2" Content="Название:"/>
+        <TextBox Name="tbName" Grid.Row="3" Width="404" Padding="5,0,0,0"
+                 Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Grid Grid.Row="4" Margin="0 0 20 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Бюджет:"/>
+            <Label Grid.Column="1" Content="Срок начала:"/>
+            <Label Grid.Column="2" Content="Срок окончания:"/>
+        </Grid>
+
+        <Grid Grid.Row="5" Margin="0 0 20 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Name="tbBudget" Grid.Column="0" Width="100" Padding="5,0,0,0"
+                     Text="{Binding Budget, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:### ### ### ###}}"/>
+
+            <DatePicker Name="dpStartDate" Grid.Column="1" Width="120" Height="27" HorizontalAlignment="Center" Margin="20,0,0,0"
+                        HorizontalContentAlignment="Center" Text="{Binding StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                        StringFormat=dd-MM-yyyy}"/>
+
+            <DatePicker Name="dpFinishDate" Grid.Column="2" Width="120" Height="27" HorizontalAlignment="Left" Margin="20,0,0,0"
+                        HorizontalContentAlignment="Center" Text="{Binding FinishDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                        StringFormat=dd-MM-yyyy}"/>
+        </Grid>
+
+        <Label Grid.Row="6" Content="Предприятие:"/>
+        <ComboBox Name="cbSubsidiaries" Grid.Row="7" ItemsSource="{Binding SubsidiariesList, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedSubsidiary, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Row="8" Content="Тип проекта:"/>
+        <ComboBox Name="cbTypes" Grid.Row="9" ItemsSource="{Binding TypesList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Row="10" Content="Уровень проекта:"/>
+        <ComboBox Name="cbLevels" Grid.Row="11" ItemsSource="{Binding LevelsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>        
+
+        <Label Grid.Row="12" Content="Менеджер проекта:"/>
+        <ComboBox Name="cbManagers" Grid.Row="13" ItemsSource="{Binding ManagersList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedManager, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Row="14" Content="Подразделение:"/>
+        <ComboBox Name="cbDepartments" Grid.Row="15" ItemsSource="{Binding DepartmentsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedDepartment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Row="16" Content="Статус:"/>
+        <ComboBox Name="cbStatuses" Grid.Row="17" ItemsSource="{Binding StatusesList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Grid Grid.Row="22">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Name="bOk" Grid.Column="0" Content="OK" IsDefault="True" Command="{Binding OkClickCommand}"
+                    CommandParameter="{Binding ElementName=addChangeWindow}"/>
+            <Button Name="bCancel" Grid.Column="1" Content="Cancel" IsCancel="True"/>
+        </Grid>
+
+    </Grid>
+</Window>
